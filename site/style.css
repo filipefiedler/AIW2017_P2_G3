@@ -2,12 +2,19 @@ body{
   margin: 0;
   font-family: "Gill Sans Extrabold", Helvetica, sans-serif;
 }
+.news-link{
+  margin: 10px 0 0 0;
+}
+.summary-content{
+  margin: 0;
+  line-height: 140%;
+}
 .wraper{
   margin: 0 auto;
   width: 1200px;
 }
 .news-summary{
-  margin-top: 8px;
+  margin-top: 12px;
 }
 .news-head{
   width: inherit;
@@ -21,14 +28,16 @@ body{
   cursor: pointer;
 }
 .news-body{
+  font-size: 17px;
   display: block;
   width: inherit;
-  height: 130px;
+  height: 200px;
   /*border: #eee 1px solid;*/
   border: lightgrey 1px solid;
   border-top: none;
   border-radius: 0 0 3px 3px;
   padding: 8px;
+  display: none;
 }
 
 .header{

@@ -5,6 +5,12 @@
         <urlString>$gatehome$plugins/ANNIE/</urlString>
       </gate.util.persistence.PersistenceManager-URLHolder>
       <gate.util.persistence.PersistenceManager-URLHolder>
+        <urlString>$gatehome$plugins/Tools/</urlString>
+      </gate.util.persistence.PersistenceManager-URLHolder>
+      <gate.util.persistence.PersistenceManager-URLHolder>
+        <urlString>$gatehome$plugins/Learning/</urlString>
+      </gate.util.persistence.PersistenceManager-URLHolder>
+      <gate.util.persistence.PersistenceManager-URLHolder>
         <urlString>$gatehome$plugins/summa_plugin/</urlString>
       </gate.util.persistence.PersistenceManager-URLHolder>
     </localList>
@@ -207,7 +213,7 @@
                 <string>table</string>
                 <gate.util.persistence.LRPersistence>
                   <resourceType>summa.resources.frequency.InvertedTable</resourceType>
-                  <resourceName>SUMMA IDF Table_0001D</resourceName>
+                  <resourceName>Summa English IDF Table</resourceName>
                   <initParams class="gate.util.persistence.MapPersistence">
                     <mapType>gate.util.SimpleFeatureMapImpl</mapType>
                     <localMap>
@@ -218,7 +224,7 @@
                       <entry>
                         <string>tableLocation</string>
                         <gate.util.persistence.PersistenceManager-URLHolder>
-                          <urlString>$relpath$../resources/tables/es_word_table.idf</urlString>
+                          <urlString>$relpath$../resources/tables/en_word_table.idf</urlString>
                         </gate.util.persistence.PersistenceManager-URLHolder>
                       </entry>
                     </localMap>
@@ -281,7 +287,7 @@
             </localMap>
           </runtimeParams>
           <resourceType>summa.resources.frequency.VectorComputation</resourceType>
-          <resourceName>SUMMA Vector Computation_00021</resourceName>
+          <resourceName>SUMMA Vector Computation English</resourceName>
           <initParams class="gate.util.persistence.MapPersistence">
             <mapType>gate.util.SimpleFeatureMapImpl</mapType>
             <localMap>
@@ -302,7 +308,7 @@
               <entry>
                 <string>stopWordLoc</string>
                 <gate.util.persistence.PersistenceManager-URLHolder>
-                  <urlString>$relpath$../resources/stop_lists/es_stop_words.lst</urlString>
+                  <urlString>$relpath$../resources/stop_lists/en_stop_words.lst</urlString>
                 </gate.util.persistence.PersistenceManager-URLHolder>
               </entry>
               <entry>
@@ -472,16 +478,16 @@
                 <string>sumWeigths</string>
                 <gate.util.persistence.CollectionPersistence>
                   <localList>
-                    <string>0.33</string>
-                    <string>0.33</string>
-                    <string>0.33</string>
+                    <string>0.25</string>
+                    <string>0.5</string>
+                    <string>0.25</string>
                   </localList>
-                  <collectionType>java.util.ArrayList</collectionType>
+                  <collectionType>java.util.Arrays$ArrayList</collectionType>
                 </gate.util.persistence.CollectionPersistence>
               </entry>
               <entry>
                 <string>compression</string>
-                <int>200</int>
+                <int>15</int>
               </entry>
               <entry>
                 <string>scoreOnly</string>
@@ -489,7 +495,7 @@
               </entry>
               <entry>
                 <string>newDocument</string>
-                <boolean>true</boolean>
+                <boolean>false</boolean>
               </entry>
               <entry>
                 <string>sumFeatures</string>
@@ -504,7 +510,7 @@
               </entry>
               <entry>
                 <string>sentCompression</string>
-                <boolean>false</boolean>
+                <boolean>true</boolean>
               </entry>
               <entry>
                 <string>annSetName</string>
