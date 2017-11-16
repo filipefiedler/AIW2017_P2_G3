@@ -42,8 +42,8 @@ public class CallSUMMAGapp {
           
             
             Document doc;
-            doc=Factory.newDocument(getInputText()); 
-           
+            doc=Factory.newDocument(new URL ("http://www.elmundo.es/espana/2017/11/15/5a0c1620e2704eda608b45ad.html"),"ISO-8859-1"); 
+            
     
                     
            //  The corpus to store the document
