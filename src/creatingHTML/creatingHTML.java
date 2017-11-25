@@ -32,7 +32,10 @@ public class creatingHTML {
                     
                     for(int i=0;i<titles.size();i++){
                         out.println("        <div class=\"news-summary\">\n");
-                        out.println("          <div class=\"news-head\">"+ titles.get(i) +"</div>\n");
+                        out.println("          <div class=\"news-head\">\n");
+                        out.println("            <i class=\"fa fa-close close-button\"></i>\n");
+                        out.println("            " + titles.get(i) + "\n");
+                        out.println("          </div>\n");
                         out.println("          <div class=\"news-body\">\n");
                         out.println("            <p class=\"summary-content\">\n" + summaries.get(i) +"\n");
                         out.println("            </p>\n");

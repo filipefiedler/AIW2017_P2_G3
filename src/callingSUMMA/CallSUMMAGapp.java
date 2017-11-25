@@ -13,6 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,7 +28,54 @@ public class CallSUMMAGapp {
     // this is the controller to load the GAPP
     public static CorpusController application;
    
-    
+    public static List<String> summarize(List<String> allTexts){
+        try{    
+            Gate.init();
+          
+            // load the GAPP 
+             application = (CorpusController)
+                PersistenceManager.loadObjectFromFile(new 
+                File("./gapps"+File.separator+gappToTest));
+             
+            //  The corpus to store the document
+            Corpus corpus=Factory.newCorpus("");
+            Document doc = null;
+            //doc=Factory.newDocument(new URL ("http://www.elmundo.es/espana/2017/11/15/5a0c1620e2704eda608b45ad.html"),"ISO-8859-1"); 
+            
+            //Iterating over the texts, creating new documents and adding to Corpus
+            for(String newsText : allTexts){
+                doc=Factory.newDocument(newsText);
+                corpus.add(doc);
+            }
+            
+            // set controller with corpus
+            application.setCorpus(corpus);
+            // execute the application
+          
+            application.execute();
+            
+            List<String> allSummaries;
+            allSummaries = new ArrayList<String>();
+            Iterable<Document> iterable = corpus;
+            for(Document document : iterable){
+                allSummaries.add(getSummary(document));
+            }
+            
+            return allSummaries;
+            
+            
+        }  catch (PersistenceException ex) {
+            Logger.getLogger(CallSUMMAGapp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CallSUMMAGapp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ResourceInstantiationException ex) {
+            Logger.getLogger(CallSUMMAGapp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(GateException ge) {
+            ge.printStackTrace();
+        }
+        
+        return null;
+    }
     
     public static void main(String[] args) {
         
@@ -39,22 +87,34 @@ public class CallSUMMAGapp {
             (CorpusController)
                             PersistenceManager.loadObjectFromFile(new 
                      File("./gapps"+File.separator+gappToTest));
-          
-            
-            Document doc;
-            doc=Factory.newDocument(new URL ("http://www.elmundo.es/espana/2017/11/15/5a0c1620e2704eda608b45ad.html"),"ISO-8859-1"); 
-            
-    
-                    
-           //  The corpus to store the document
+             
+            //  The corpus to store the document
             Corpus corpus=Factory.newCorpus("");
-            // put document in corpus
-            corpus.add(doc);
+            Document doc = null;
+            //doc=Factory.newDocument(new URL ("http://www.elmundo.es/espana/2017/11/15/5a0c1620e2704eda608b45ad.html"),"ISO-8859-1"); 
+            
+            //Iterating over the texts, creating new documents and adding to Corpus
+            List<String> allNewsTexts;
+            allNewsTexts = new ArrayList<String>();
+            for(String newsText : allNewsTexts){
+                doc=Factory.newDocument(newsText);
+                corpus.add(doc);
+            }
+            
             // set controller with corpus
             application.setCorpus(corpus);
             // execute the application
           
             application.execute();
+            
+            List<String> allNewsSummaries;
+            allNewsSummaries = new ArrayList<String>();
+            Iterable<Document> iterable = corpus;
+            for(Document document : iterable){
+                allNewsSummaries.add(getSummary(doc));
+            }
+            
+            
             // show the original text
             System.out.println("+++INPUT+++");
             System.out.println(doc.getContent().toString());

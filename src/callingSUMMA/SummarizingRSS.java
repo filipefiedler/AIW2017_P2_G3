@@ -24,10 +24,12 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,9 +39,6 @@ import java.util.logging.Logger;
  */
 public class SummarizingRSS {
     
-    
-    
-  
     public static String gappToTest="MySUMMA.gapp";
     // this is the controller to load the GAPP
     public static CorpusController application;
