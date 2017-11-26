@@ -69,17 +69,31 @@ public class SimpleHTMLExtractor {
             return list;
         }
         
-        image = storyBody.getElementsByTag("img").first().attributes().get("src");
+        Elements imageEl;
+        
+        imageEl = storyBody.getElementsByTag("img");
+        if (imageEl == null){
+            image = "";
+        } else {
+            try{
+            image = imageEl.first().attributes().get("src");
+            } catch (NullPointerException e) {
+                image = "";
+            }
+        }
+        
         paragraphs = storyBody.getElementsByTag("p");
-
-        String txt;        
-
-        for(Element par: paragraphs) {
-            if(par.hasText()) {
-                txt=par.text();
-                //System.out.println(txt);
-                text=text+ " " + txt;
-            }    
+        if (paragraphs == null){
+            text = "";
+        } else {
+            String txt;        
+            for(Element par: paragraphs) {
+                if(par.hasText()) {
+                    txt=par.text();
+                    //System.out.println(txt);
+                    text=text+ " " + txt;
+                }    
+            }
         }
         
         //list.add(title); 

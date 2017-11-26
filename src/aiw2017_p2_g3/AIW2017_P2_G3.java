@@ -48,11 +48,11 @@ public class AIW2017_P2_G3 {
         for(ListIterator<String> iter = newsLinks.listIterator(); iter.hasNext(); ){
             String link = iter.next();
             //System.out.println(link);
-            
+            System.out.println(link);
             newsTextAndImageLink = SimpleHTMLExtractor.extractFromBbc(link);
             newsText = (String) newsTextAndImageLink.get(0);
             imageLink = newsTextAndImageLink.get(1);
-            if (!("".equals(newsText))){
+            if (!("".equals(newsText)) || (!("".equals(imageLink)))) {
                 //System.out.println("Got!");
                 allNewsTitles.add(newsTitles.get(i));
                 allNewsLinks.add(newsLinks.get(i));
