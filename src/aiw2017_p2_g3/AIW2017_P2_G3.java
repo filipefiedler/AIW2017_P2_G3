@@ -12,6 +12,8 @@ import readingrss.ReadingRSS;
 import utils.SimpleHTMLExtractor;
 import callingSUMMA.CallSUMMAGapp;
 import creatingHTML.creatingHTML;
+import java.io.OutputStream;
+import java.io.PrintStream;
 
 /**
  *
@@ -24,6 +26,12 @@ public class AIW2017_P2_G3 {
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
+        
+        System.out.println("Welcome to the BBC News Summarizer!");
+        System.out.println("Please, wait a little bit.");
+        System.out.println("The program will take around a minute to make your summaries.");
+        System.out.println(".........................");
+        System.out.println();
         
         List<List<String>> titlesAndLinksRSS;
         titlesAndLinksRSS = ReadingRSS.readBbcRss();
@@ -47,8 +55,6 @@ public class AIW2017_P2_G3 {
         
         for(ListIterator<String> iter = newsLinks.listIterator(); iter.hasNext(); ){
             String link = iter.next();
-            //System.out.println(link);
-            System.out.println(link);
             newsTextAndImageLink = SimpleHTMLExtractor.extractFromBbc(link);
             newsText = (String) newsTextAndImageLink.get(0);
             imageLink = newsTextAndImageLink.get(1);
@@ -68,10 +74,29 @@ public class AIW2017_P2_G3 {
         
 //        System.out.println("Porra!");
         
+        //Disable System.out.println()
+        PrintStream originalStream = System.out;
+
+        PrintStream dummyStream = new PrintStream(new OutputStream(){
+            public void write(int b) {
+                // NO-OP
+            }
+        });
+
+        System.setOut(dummyStream);
+
         List<String> allNewsSummaries = CallSUMMAGapp.summarize(allNewsTexts);
+        
+        //Enable System.out.println() again
+        System.setOut(originalStream);
+
         creatingHTML.createHtmlFile(allNewsTitles, allNewsSummaries, allNewsLinks);
         
-        
+        System.out.println(".........................");
+        System.out.println();
+        System.out.println("Done!");
+        System.out.println("Go to the main folder and open the file BBC Summaries.");
+        System.out.println("******************");
         
     }
     
